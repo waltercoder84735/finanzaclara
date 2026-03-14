@@ -14,4 +14,10 @@
     {% empty %}
         <p>No hay plantillas disponibles todavía.</p>
     {% endfor %}
+<h2>Agregar Plantilla</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
 {% endblock %}

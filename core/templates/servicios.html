@@ -15,4 +15,10 @@
     {% empty %}
         <p>No hay servicios cargados todavía.</p>
     {% endfor %}
+ <h2>Agregar Servicio</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>    
 {% endblock %}
