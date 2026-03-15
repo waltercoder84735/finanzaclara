@@ -3,32 +3,58 @@
 {% block titulo %}Inicio - Finanzas Claras{% endblock %}
 
 {% block contenido %}
-    <h1>Bienvenido a Finanzas Claras</h1>
-    <p>Consultoría financiera para Pymes y personas.</p>
 
-    <h2>¿Qué ofrecemos?</h2>
-    <ul>
-        <li>Asesoramiento en costos para Pymes</li>
-        <li>Gestión de finanzas personales</li>
-        <li>Tutoriales y plantillas gratuitas</li>
-    </ul>
+{% load static %}
+    <!-- Banner de bienvenida -->
+    <div class="d-flex align-items-center justify-content-center mb-5 mt-3">
+        <img src="{% static 'img/walter.jpeg' %}" class="rounded-circle me-3" style="width:100px; height:100px; object-fit:cover;">
+        <div class="bg-dark text-white p-3 rounded" style="max-width:600px; border-radius: 20px 20px 20px 0px !important;">
+            <p class="mb-0">Hola, soy Walter y te doy la bienvenida a <strong>Finanzas Claras</strong>, una consultoría financiera pensada para Pymes y personas que están iniciando en sus finanzas.</p>
+        </div>
+    </div>
+
+    <!-- Qué ofrecemos -->
+    <h2 class="text-center mb-4">¿Qué ofrecemos?</h2>
+    <div class="row text-center mb-5">
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400" class="img-fluid rounded" alt="Pymes">
+            <h5 class="mt-2">Asesoramiento en costos para Pymes</h5>
+        </div>
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400" class="img-fluid rounded" alt="Finanzas personales">
+            <h5 class="mt-2">Gestión de finanzas personales</h5>
+        </div>
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400" class="img-fluid rounded" alt="Tutoriales">
+            <h5 class="mt-2">Tutoriales y plantillas gratuitas</h5>
+        </div>
+    </div>
 
     <hr>
 
-    <h2>¿En qué podemos ayudarte?</h2>
-    <form method="get">
-        {{ form.as_p }}
-        <button type="submit">Buscar</button>
-    </form>
+    <!-- Buscador -->
+    <h2 class="text-center mb-4">¿En qué podemos ayudarte?</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="get" class="mb-4">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark w-100">Buscar</button>
+            </form>
 
-    {% if resultados %}
-        <h3>Resultados:</h3>
-        {% for item in resultados %}
-            <p>{{ item.nombre }} - {{ item.descripcion }}</p>
-            <hr>
-        {% endfor %}
-   {% elif request.GET.busqueda %}
-        <p>No se encontraron resultados.</p>
-    {% endif %}
+            {% if resultados %}
+                <h5>Resultados:</h5>
+                {% for item in resultados %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h6 class="card-title">{{ item.nombre }}</h6>
+                            <p class="card-text">{{ item.descripcion }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% elif request.GET.busqueda %}
+                <p>No se encontraron resultados.</p>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
