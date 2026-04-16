@@ -69,3 +69,5 @@ def buscar_cliente(request):
         nombre = form.cleaned_data['nombre']
         resultados = Cliente.objects.filter(nombre__icontains=nombre)
     return render(request, 'buscar_cliente.html', {'form': form, 'resultados': resultados})
+def about(request):
+    return render(request, 'about.html')

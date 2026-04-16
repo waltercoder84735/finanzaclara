@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Acerca de mí - Finanzas Claras{% endblock %}
+
+{% block contenido %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img src="{% static 'img/walter.jpeg' %}" class="rounded-circle mb-3" style="width:150px; height:150px; object-fit:cover;">
+                    <h2>Walter Licitra</h2>
+                    <h5 class="text-muted">Consultor Financiero</h5>
+                </div>
+                <div class="card-body">
+                    <h4>Sobre mí</h4>
+                    <p>Soy Walter Licitra, consultor financiero especializado en asesoramiento para Pymes y finanzas personales. Mi objetivo es ayudarte a tomar mejores decisiones financieras para que puedas alcanzar tus metas.</p>
+
+                    <h4 class="mt-4">Experiencia</h4>
+                    <p>Años de experiencia trabajando con Pymes y personas que buscan organizar sus finanzas, reducir costos y hacer crecer sus ahorros.</p>
+
+                    <h4 class="mt-4">Servicios que ofrezco</h4>
+                    <ul>
+                        <li>Asesoramiento en costos para Pymes</li>
+                        <li>Gestión de finanzas personales</li>
+                        <li>Planificación de inversiones</li>
+                        <li>Tutoriales y plantillas gratuitas</li>
+                    </ul>
+
+                    <h4 class="mt-4">Contacto</h4>
+                    <p>¿Querés saber más? <a href="{% url 'contacto' %}">Escribime</a> y te respondo a la brevedad.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
