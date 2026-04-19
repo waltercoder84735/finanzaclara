@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Eliminar Artículo - Finanzas Claras{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title mb-4">¿Estás seguro que querés eliminar este artículo?</h4>
+                <p class="text-muted">{{ articulo.titulo }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger w-100 mb-2">Sí, eliminar</button>
+                </form>
+                <a href="{% url 'blog' %}" class="btn btn-dark w-100">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Servicio, Articulo, Cliente, Tutorial, Plantilla
 from .forms import ServicioForm, ArticuloForm, ClienteForm, TutorialForm, PlantillaForm, BusquedaClienteForm, BusquedaGeneralForm
 
@@ -71,3 +71,34 @@ def buscar_cliente(request):
     return render(request, 'buscar_cliente.html', {'form': form, 'resultados': resultados})
 def about(request):
     return render(request, 'about.html')
+def detalle_articulo(request, pk):
+    articulo = Articulo.objects.get(pk=pk)
+    return render(request, 'detalle_articulo.html', {'articulo': articulo})
+
+def crear_articulo(request):
+    if request.method == 'POST':
+        form = ArticuloForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('blog')
+    else:
+        form = ArticuloForm()
+    return render(request, 'crear_articulo.html', {'form': form})
+
+def editar_articulo(request, pk):
+    articulo = Articulo.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ArticuloForm(request.POST, request.FILES, instance=articulo)
+        if form.is_valid():
+            form.save()
+            return redirect('blog')
+    else:
+        form = ArticuloForm(instance=articulo)
+    return render(request, 'editar_articulo.html', {'form': form, 'articulo': articulo})
+
+def eliminar_articulo(request, pk):
+    articulo = Articulo.objects.get(pk=pk)
+    if request.method == 'POST':
+        articulo.delete()
+        return redirect('blog')
+    return render(request, 'eliminar_articulo.html', {'articulo': articulo})

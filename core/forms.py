@@ -9,7 +9,7 @@ class ServicioForm(forms.ModelForm):
 class ArticuloForm(forms.ModelForm):
     class Meta:
         model = Articulo
-        fields = ['titulo', 'contenido', 'tipo']
+        fields = ['titulo', 'contenido', 'tipo', 'imagen']
 
 class ClienteForm(forms.ModelForm):
     class Meta:

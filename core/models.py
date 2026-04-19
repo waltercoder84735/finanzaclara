@@ -11,9 +11,10 @@ class Servicio(models.Model):
 
 class Articulo(models.Model):
     titulo = models.CharField(max_length=200)
+    tipo = models.CharField(max_length=20)
     contenido = models.TextField()
+    imagen = models.ImageField(upload_to='articulos/', null=True, blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    tipo = models.CharField(max_length=20)  # "Pyme" o "Personal"
 
     def __str__(self):
         return self.titulo
