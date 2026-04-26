@@ -67,5 +67,11 @@ http://127.0.0.1:8000/
 - Panel de administración con todos los modelos registrados
 - Herencia de templates con Bootstrap 5
 
+## Nota sobre CKEditor
+El modelo Articulo utiliza RichTextField de django-ckeditor para el campo contenido. 
+Sin embargo, el editor visual no se renderiza debido a una incompatibilidad conocida 
+entre django-ckeditor 6.7.3 y Django 6.0.2. El campo funciona correctamente para 
+guardar y mostrar contenido.
+
 ## Autor
 Walter Licitra
