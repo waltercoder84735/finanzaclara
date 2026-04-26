@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Servicio, Articulo, Cliente, Tutorial, Plantilla
 from .forms import ServicioForm, ArticuloForm, ClienteForm, TutorialForm, PlantillaForm, BusquedaClienteForm, BusquedaGeneralForm
 
@@ -69,12 +70,15 @@ def buscar_cliente(request):
         nombre = form.cleaned_data['nombre']
         resultados = Cliente.objects.filter(nombre__icontains=nombre)
     return render(request, 'buscar_cliente.html', {'form': form, 'resultados': resultados})
+
 def about(request):
     return render(request, 'about.html')
+
 def detalle_articulo(request, pk):
     articulo = Articulo.objects.get(pk=pk)
     return render(request, 'detalle_articulo.html', {'articulo': articulo})
 
+@login_required
 def crear_articulo(request):
     if request.method == 'POST':
         form = ArticuloForm(request.POST, request.FILES)
@@ -85,6 +89,7 @@ def crear_articulo(request):
         form = ArticuloForm()
     return render(request, 'crear_articulo.html', {'form': form})
 
+@login_required
 def editar_articulo(request, pk):
     articulo = Articulo.objects.get(pk=pk)
     if request.method == 'POST':
@@ -96,6 +101,7 @@ def editar_articulo(request, pk):
         form = ArticuloForm(instance=articulo)
     return render(request, 'editar_articulo.html', {'form': form, 'articulo': articulo})
 
+@login_required
 def eliminar_articulo(request, pk):
     articulo = Articulo.objects.get(pk=pk)
     if request.method == 'POST':
